@@ -1,0 +1,450 @@
+{
+  "api": {},
+  "fc": {
+    "structs": {
+      "extensions_type": {
+        "fields": {
+          "type": {
+            "typeName": "uint16"
+          },
+          "data": {
+            "typeName": "bytes"
+          }
+        }
+      },
+      "transaction_header": {
+        "fields": {
+          "expiration": {
+            "typeName": "time"
+          },
+          "ref_block_num": {
+            "typeName": "uint16"
+          },
+          "ref_block_prefix": {
+            "typeName": "uint32"
+          },
+          "net_usage_words": {
+            "typeName": "varuint32"
+          },
+          "max_cpu_usage_ms": {
+            "typeName": "uint8"
+          },
+          "delay_sec": {
+            "typeName": "varuint32"
+          }
+        }
+      },
+      "transaction": {
+        "fields": {
+          "": {},
+          "context_free_actions": {
+            "typeName": "vector"
+          },
+          "actions": {
+            "typeName": "vector"
+          },
+          "transaction_extensions": {
+            "typeName": "vector"
+          }
+        }
+      },
+      "signed_transaction": {
+        "fields": {
+          "": {},
+          "signatures": {
+            "typeName": "vector"
+          },
+          "context_free_data": {
+            "typeName": "vector"
+          }
+        }
+      },
+      "field_def": {
+        "fields": {
+          "name": {
+            "typeName": "string"
+          },
+          "type": {
+            "typeName": "string"
+          }
+        }
+      },
+      "producer_key": {
+        "fields": {
+          "producer_name": {
+            "typeName": "name"
+          },
+          "block_signing_key": {
+            "typeName": "public_key"
+          }
+        }
+      },
+      "producer_schedule": {
+        "fields": {
+          "version": {
+            "typeName": "uint32"
+          },
+          "producers": {
+            "typeName": "vector"
+          }
+        }
+      },
+      "chain_config": {
+        "fields": {
+          "target_block_size": {
+            "typeName": "uint32"
+          },
+          "max_block_size": {
+            "typeName": "uint32"
+          },
+          "target_block_acts_per_scope": {
+            "typeName": "uint32"
+          },
+          "max_block_acts_per_scope": {
+            "typeName": "uint32"
+          },
+          "target_block_acts": {
+            "typeName": "uint32"
+          },
+          "max_block_acts": {
+            "typeName": "uint32"
+          },
+          "real_threads": {
+            "typeName": "uint64"
+          },
+          "max_storage_size": {
+            "typeName": "uint64"
+          },
+          "max_transaction_lifetime": {
+            "typeName": "uint32"
+          },
+          "max_authority_depth": {
+            "typeName": "uint16"
+          },
+          "max_transaction_exec_time": {
+            "typeName": "uint32"
+          },
+          "max_inline_depth": {
+            "typeName": "uint16"
+          },
+          "max_inline_action_size": {
+            "typeName": "uint32"
+          },
+          "max_generated_transaction_size": {
+            "typeName": "uint32"
+          }
+        }
+      },
+      "type_def": {
+        "fields": {
+          "new_type_name": {
+            "typeName": "string"
+          },
+          "type": {
+            "typeName": "string"
+          }
+        }
+      },
+      "struct_def": {
+        "fields": {
+          "name": {
+            "typeName": "string"
+          },
+          "base": {
+            "typeName": "string"
+          },
+          "fields": {
+            "typeName": "vector"
+          }
+        }
+      },
+      "clause_pair": {
+        "fields": {
+          "id": {
+            "typeName": "string"
+          },
+          "body": {
+            "typeName": "string"
+          }
+        }
+      },
+      "error_message": {
+        "fields": {
+          "error_code": {
+            "typeName": "uint64"
+          },
+          "error_msg": {
+            "typeName": "string"
+          }
+        }
+      },
+      "abi_def": {
+        "fields": {
+          "version": {
+            "typeName": "string"
+          },
+          "types": {
+            "typeName": "vector"
+          },
+          "structs": {
+            "typeName": "vector"
+          },
+          "actions": {
+            "typeName": "vector"
+          },
+          "tables": {
+            "typeName": "vector"
+          },
+          "ricardian_clauses": {
+            "typeName": "vector"
+          },
+          "error_messages": {
+            "typeName": "vector"
+          },
+          "abi_extensions": {
+            "typeName": "vector"
+          }
+        }
+      },
+      "table_def": {
+        "fields": {
+          "name": {
+            "typeName": "name"
+          },
+          "index_type": {
+            "typeName": "string"
+          },
+          "key_names": {
+            "typeName": "vector"
+          },
+          "key_types": {
+            "typeName": "vector"
+          },
+          "type": {
+            "typeName": "string"
+          }
+        }
+      },
+      "action": {
+        "fields": {
+          "account": {
+            "typeName": "name"
+          },
+          "name": {
+            "typeName": "name"
+          },
+          "authorization": {
+            "typeName": "vector"
+          },
+          "data": {
+            "typeName": "bytes"
+          }
+        }
+      },
+      "action_def": {
+        "fields": {
+          "name": {
+            "typeName": "name"
+          },
+          "type": {
+            "typeName": "string"
+          },
+          "ricardian_contract": {
+            "typeName": "string"
+          }
+        }
+      },
+      "block_header": {
+        "fields": {
+          "previous": {
+            "typeName": "fixed_bytes32"
+          },
+          "timestamp": {
+            "typeName": "uint32"
+          },
+          "transaction_mroot": {
+            "typeName": "fixed_bytes32"
+          },
+          "action_mroot": {
+            "typeName": "fixed_bytes32"
+          },
+          "block_mroot": {
+            "typeName": "fixed_bytes32"
+          },
+          "producer": {
+            "typeName": "name"
+          },
+          "schedule_version": {
+            "typeName": "uint32"
+          },
+          "new_producers": {
+            "fields": {
+              "version": {
+                "typeName": "uint32"
+              },
+              "producers": {
+                "typeName": "vector"
+              }
+            }
+          }
+        }
+      },
+      "packed_transaction": {
+        "fields": {
+          "signatures": {
+            "typeName": "vector"
+          },
+          "compression": {
+            "typeName": "uint8"
+          },
+          "packed_context_free_data": {
+            "typeName": "bytes"
+          },
+          "packed_trx": {
+            "typeName": "bytes"
+          }
+        }
+      },
+      "authority": {
+        "fields": {
+          "threshold": {
+            "typeName": "uint32"
+          },
+          "keys": {
+            "typeName": "vector"
+          },
+          "accounts": {
+            "typeName": "vector"
+          },
+          "waits": {
+            "typeName": "vector"
+          }
+        }
+      },
+      "bidname": {
+        "fields": {
+          "bidder": {
+            "typeName": "name"
+          },
+          "newname": {
+            "typeName": "name"
+          },
+          "bid": {
+            "typeName": "asset"
+          }
+        }
+      },
+      "blockchain_parameters": {
+        "fields": {
+          "max_block_net_usage": {
+            "typeName": "uint64"
+          },
+          "target_block_net_usage_pct": {
+            "typeName": "uint32"
+          },
+          "max_transaction_net_usage": {
+            "typeName": "uint32"
+          },
+          "base_per_transaction_net_usage": {
+            "typeName": "uint32"
+          },
+          "net_usage_leeway": {
+            "typeName": "uint32"
+          },
+          "context_free_discount_net_usage_num": {
+            "typeName": "uint32"
+          },
+          "context_free_discount_net_usage_den": {
+            "typeName": "uint32"
+          },
+          "max_block_cpu_usage": {
+            "typeName": "uint32"
+          },
+          "target_block_cpu_usage_pct": {
+            "typeName": "uint32"
+          },
+          "max_transaction_cpu_usage": {
+            "typeName": "uint32"
+          },
+          "min_transaction_cpu_usage": {
+            "typeName": "uint32"
+          },
+          "max_transaction_lifetime": {
+            "typeName": "uint32"
+          },
+          "deferred_trx_expiration_window": {
+            "typeName": "uint32"
+          },
+          "max_transaction_delay": {
+            "typeName": "uint32"
+          },
+          "max_inline_action_size": {
+            "typeName": "uint32"
+          },
+          "max_inline_action_depth": {
+            "typeName": "uint16"
+          },
+          "max_authority_depth": {
+            "typeName": "uint16"
+          }
+        }
+      },
+      "buyram": {
+        "fields": {
+          "payer": {
+            "typeName": "name"
+          },
+          "receiver": {
+            "typeName": "name"
+          },
+          "quant": {
+            "typeName": "asset"
+          }
+        }
+      },
+      "buyrambytes": {
+        "fields": {
+          "payer": {
+            "typeName": "name"
+          },
+          "receiver": {
+            "typeName": "name"
+          },
+          "bytes": {
+            "typeName": "uint32"
+          }
+        }
+      },
+      "canceldelay": {
+        "fields": {
+          "canceling_auth": {
+            "fields": {
+              "actor": {
+                "typeName": "name"
+              },
+              "permission": {
+                "typeName": "name"
+              }
+            }
+          },
+          "trx_id": {
+            "typeName": "fixed_bytes32"
+          }
+        }
+      },
+      "claimrewards": {
+        "fields": {
+          "owner": {
+            "typeName": "name"
+          }
+        }
+      },
+      "connector": {
+        "fields": {
+          "balance": {
+            "typeName": "asset"
+          },
+          "weight": {
+            "typeName": "float64"
+          }
+        }
