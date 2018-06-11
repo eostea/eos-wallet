@@ -2486,7 +2486,7 @@ eosjs-api@6.1.3:
     camel-case "^3.0.0"
     isomorphic-fetch "^2.2.1"
 
-eosjs-ecc@4.0.1, eosjs-ecc@^4.0.1:
+eosjs-ecc@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/eosjs-ecc/-/eosjs-ecc-4.0.1.tgz#0a118000d3a78b9eab1432dd758f705810461adf"
   dependencies:
