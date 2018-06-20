@@ -73,7 +73,7 @@
           </el-form>
         </el-dialog>
         <!-- Search Public Key -->
-        <el-dialog :title="$t('searchAccountPubKey.title')" :visible.sync="dialogPubKeyVisible">
+        <el-dialog :title="$t('account.searchAccountPubKey.title')" :visible.sync="dialogPubKeyVisible">
           <el-input
             type="text"
             v-model="dialogPubKey"
@@ -87,28 +87,28 @@
           </el-button>
         </el-dialog>
         <!-- Search Account Name 账户名查询 -->
-        <el-dialog :title="$t('searchAccountName.title')" :visible.sync="dialogAccountNameVisible">
+        <el-dialog :title="$t('account.searchAccountName.title')" :visible.sync="dialogAccountNameVisible">
           <el-input
             type="text"
             maxlength="12"
             v-model="dialogAccountName"
-            :placeholder="$t('searchAccountName.placeholder')">
+            :placeholder="$t('account.searchAccountName.placeholder')">
           </el-input>
           <el-button
             type="primary"
             style="margin-top: 40px;"
             @click="getAccountByName">
-            {{ $t('searchAccountName.btn') }}
+            {{ $t('account.searchAccountName.btn') }}
           </el-button>
         </el-dialog>
         <!-- Search controll account -->
-        <el-dialog :title="$t('searchControllAccount.title')" :visible.sync="dialogControlledAccountsVisible">
-          <el-input type="text" maxlength="12" v-model="dialogControlledAccounts" :placeholder="$t('searchControllAccount.placeholder')"></el-input>
+        <el-dialog :title="$t('account.searchControllAccount.title')" :visible.sync="dialogControlledAccountsVisible">
+          <el-input type="text" maxlength="12" v-model="dialogControlledAccounts" :placeholder="$t('account.searchControllAccount.placeholder')"></el-input>
           <el-button
             type="primary"
             style="margin-top: 40px;"
             @click="getControlledAccountsByName">
-            {{ $t('searchControllAccount.btn') }}
+            {{ $t('account.searchControllAccount.btn') }}
           </el-button>
         </el-dialog>
         <!-- table -->
