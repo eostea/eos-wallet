@@ -7,31 +7,40 @@
           v-loading="loading"
           element-loading-text="计算中"
           >
-          <p>公钥：{{ key.pubKeys }}</p>
-          <p>私钥：{{ key.priKeys }}</p>
+          <p>{{ $t('createKeys.publicKey') }}：{{ key.pubKeys }}</p>
+          <p>{{ $t('createKeys.privateKey') }}：{{ key.priKeys }}</p>
         </el-card>
         <el-card class="card-item">
           <div slot="header" class="clearfix">
-            <h1>通过种子创建秘钥对<span style="color: #BE6A77;">（推荐）</span></h1>
+            <h1>{{ $t('createKeys.h1_1') }}<span style="color: #BE6A77;">{{ $t('createKeys.h1_1_span') }}</span></h1>
           </div>
           <el-form label-width="120">
-             <el-form-item>
-              <el-input v-model="seed" placeholder="同一个种子每次产生相同的私钥"></el-input>
+            <el-form-item>
+              <el-input v-model="seed" :placeholder="$t('createKeys.seed_placeholder')"></el-input>
             </el-form-item>
-             <el-form-item>
-               <el-button @click="createKeyBySeed">创建秘钥对</el-button>
+            <el-form-item>
+              <el-button @click="createKeyBySeed">{{ $t('createKeys.btn_text') }}</el-button>
             </el-form-item>
           </el-form>
         </el-card>
         <el-card class="card-item">
           <div slot="header" class="clearfix">
-            <h1>随机创建秘钥对</h1>
+            <h1>{{ $t('createKeys.h1_2') }}</h1>
           </div>
           <el-form label-width="120">
-             <el-form-item>
-               <el-button @click="createKeyByRandom">创建秘钥对</el-button>
+            <el-form-item>
+              <el-button @click="createKeyByRandom">{{ $t('createKeys.btn_text')}}</el-button>
             </el-form-item>
           </el-form>
+        </el-card>
+      </el-col>
+      <el-col :xs="24" :sm="22" :lg="6" :push="1" class="aside-spaceing">
+        <el-card style="color: #909399;">
+          <h3 style="color: #2c3e50;">{{ $t('createKeys.h3')}}</h3>
+          <ol>
+            <li>{{ $t('createKeys.li_1')}}</li>
+            <li>{{ $t('createKeys.li_2')}}</li>
+          </ol>
         </el-card>
       </el-col>
     </el-row>
@@ -94,11 +103,21 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .card-item:nth-of-type(n) {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 h1 {
   margin: 0;
   color: #2c3e50;
+}
+
+.aside-spaceing {
+  margin-top: 20px;
+}
+
+@media (min-width: 1200px) {
+  .aside-spaceing {
+    margin-left: 20px;
+  }
 }
 </style>

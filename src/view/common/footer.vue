@@ -1,7 +1,9 @@
 <template>
   <footer>
     <div>
-      <p class="tips">项目开源地址：<a href="https://github.com/eostea/eos-wallet" target="_blank">https://github.com/eostea/eos-wallet</a></p>
+      <p class="tips">{{ $t('footer.tips1') }}</p>
+      <p class="tips">{{ $t('footer.tips2') }}<a href="https://github.com/eostea/eos-wallet" target="_blank">https://github.com/eostea/eos-wallet</a></p>
+      <p class="tips">{{ $t('footer.tips3') }}</p>
     </div>
   </footer>
 </template>
@@ -11,7 +13,6 @@ export default {
   name: 'footerComponent',
   data () {
     return {
-
     }
   }
 }
@@ -21,6 +22,6 @@ export default {
 <style scoped>
 .tips {
   margin: 0;
-  padding: 20px;
+  padding: 10px;
 }
 </style>

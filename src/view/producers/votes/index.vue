@@ -1,53 +1,42 @@
 <template>
   <div class="container">
-    <el-row>
-      <el-col :xs="24" :sm="22" :lg="14" :push="1">
-        <el-card>
-          <h3>选择投票节点</h3>
-          <el-transfer
-            style="text-align: left; display: inline-block"
-            v-model="form.producers"
-            filterable
-            :left-default-checked="[2, 3]"
-            :right-default-checked="[1]"
-            :titles="['节点列表', '已选节点']"
-            :format="{
-              noChecked: '${total}',
-              hasChecked: '${checked}/${total}'
-            }"
-            :data="tableData">
-          </el-transfer>
-        </el-card>
-        <el-card>
-          <h3>投票给生产者</h3>
-          <el-form :model="form" :rules="rules" ref="form">
-            <el-form-item label="投票者" prop="voter">
-              <el-select v-model="form.voter" placeholder="请选择账户">
-                <el-option
-                  v-for="name in accountNames"
-                  :key="name"
-                  :label="name"
-                  :value="name">
-                </el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="代理人">
-              <el-input v-model="form.proxy" placeholder="委托给代理人"></el-input>
-            </el-form-item>
-            <el-form-item>
-              <el-button type="primary" @click="handleSubmit('form')">确定</el-button>
-            </el-form-item>
-          </el-form>
-        </el-card>
-      </el-col>
-      <el-col :lg="6" :push="2" class="hidden-md-and-down">
-        <el-card style="color: #909399;">
-          <h3 style="color: #2c3e50;">提示：</h3>
-          <p>设置代理人和投票节点不能同时进行</p>
-          <p>代理账号必须先注册成代理人</p>
-        </el-card>
-      </el-col>
-    </el-row>
+    <el-card>
+      <h3>选择投票节点</h3>
+      <el-transfer
+        style="text-align: left; display: inline-block"
+        v-model="form.producers"
+        filterable
+        :left-default-checked="[2, 3]"
+        :right-default-checked="[1]"
+        :titles="['节点列表', '已选节点']"
+        :format="{
+          noChecked: '${total}',
+          hasChecked: '${checked}/${total}'
+        }"
+        :data="tableData">
+      </el-transfer>
+    </el-card>
+    <el-card>
+      <h3>投票给生产者</h3>
+      <el-form :model="form" :rules="rules" ref="form">
+        <el-form-item label="投票者" prop="voter">
+          <el-select v-model="form.voter" filterable placeholder="请选择账户">
+            <el-option
+              v-for="name in accountNames"
+              :key="name"
+              :label="name"
+              :value="name">
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="代理人">
+          <el-input v-model="form.proxy" placeholder="委托给代理人"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="handleSubmit('form')">确定</el-button>
+        </el-form-item>
+      </el-form>
+    </el-card>
   </div>
 </template>
 
@@ -68,7 +57,7 @@ export default {
         voter: {required: true, message: '请选择投票账户', trigger: 'blur'}
       },
       tableData: [],
-      eosmonitorTransaction: 'https://party.eosmonitor.io/txn'
+      eosmonitorTransaction: 'https://eosmonitor.io/txn'
     }
   },
   mounted () {
@@ -79,6 +68,10 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (this.form.proxy !== '' && this.form.producers.length > 0) {
           this.$message.warning('代理和投票不能同时进行')
+          return false
+        }
+        if (this.form.producers.length < 1 || this.form.producers.length > 30) {
+          this.$message.warning('投票节点个数范围： 0～30')
           return false
         }
         if (valid) {
@@ -169,6 +162,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .el-card + .el-card {
+  margin-top: 20px;
+}
+.container {
   margin-top: 20px;
 }
 </style>

@@ -4,40 +4,40 @@
       <el-col :xs="24" :sm="22" :lg="14" :push="1">
         <el-card>
           <el-form :rules="rules" :model="form" ref="form">
-            <el-form-item label="设置端点">
+            <el-form-item :label="$t('setting.form.httpEndpoint')">
               <el-row type="flex">
                 <el-col :span="18">
-                  <el-input v-model="form.httpEndpoint" placeholder="一般为url+端口"></el-input>
+                  <el-input v-model="form.httpEndpoint" :placeholder="$t('setting.form.httpEndpoint_placeholder')"></el-input>
                 </el-col>
                 <el-col :span="4" :push="2">
-                  <el-button type="primary" @click="checkLinkAndSetChainId">测试连接</el-button>
+                  <el-button type="primary" @click="checkLinkAndSetChainId">{{ $t('setting.form.test') }}</el-button>
                 </el-col>
               </el-row>
             </el-form-item>
-            <el-form-item label="过期时间">
-              <el-input v-model="form.expireInSeconds" placeholder="默认为60秒"></el-input>
+            <el-form-item :label="$t('setting.form.expireInSeconds')">
+              <el-input v-model="form.expireInSeconds" :placeholder="$t('setting.form.expireInSeconds_placeholder')"></el-input>
             </el-form-item>
-            <el-form-item label="广播(可选)">
+            <el-form-item :label="$t('setting.form.broadcast')">
               <el-radio v-model="form.broadcast" :label="true">true</el-radio>
               <el-radio v-model="form.broadcast" :label="false">false</el-radio>
             </el-form-item>
-            <el-form-item label="广播">
+            <el-form-item :label="$t('setting.form.sign')">
               <el-radio v-model="form.sign" :label="true">true</el-radio>
               <el-radio v-model="form.sign" :label="false">false</el-radio>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" @click="handleSubmit('form')">确定配置</el-button>
+              <el-button type="primary" @click="handleSubmit('form')">{{ $t('setting.form.connect') }}</el-button>
             </el-form-item>
           </el-form>
         </el-card>
       </el-col>
       <el-col :xs="24" :sm="22" :lg="6" :push="1" class="aside-spaceing">
         <el-card style="color: #909399;">
-          <h3 style="color: #2c3e50;">端点列表</h3>
+          <h3 style="color: #2c3e50;">{{ $t('setting.tips.h3') }}</h3>
           <ol>
-            <li>https://eosio.tc.ink</li>
+            <li>https://eos-rpc.tc.ink</li>
           </ol>
-          <p>如果你有http端点，请发邮件联系support@tclabs.tech</p>
+          <p>{{ $t('setting.tips.contact') }}</p>
         </el-card>
       </el-col>
     </el-row>
@@ -52,7 +52,8 @@ export default {
     return {
       form: {
         chainId: '', // 32 byte (64 char) hex string
-        httpEndpoint: 'https://eosio.tc.ink',
+        httpEndpoint: 'https://eos-rpc.tc.ink',
+        // httpEndpoint: 'http://116.196.72.43:8888',
         expireInSeconds: 60,
         broadcast: true,
         debug: false,
@@ -130,6 +131,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.el-card + .el-card {
+  margin-top: 20px;
+}
 @media (max-width: 1199px) {
   .aside-spaceing {
     margin-top: 20px;

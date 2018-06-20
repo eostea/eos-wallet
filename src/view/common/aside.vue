@@ -7,33 +7,27 @@
       background-color="#FFFFFF"
       active-text-color="#2a77cb">
       <div class="logo">
-        <a href="">
-          <img src="@/assets/EOSTEA.png" alt="EOSTEA logo">
-        </a>
+        <h1>EOS Web Wallet</h1>
       </div>
       <el-menu-item index="0" :route="{path: 'createkeys'}">
         <i class="el-icon-plus"></i>
-        <span slot="title">密钥</span>
+        <span slot="title">{{ $t('aside.key') }}</span>
       </el-menu-item>
        <el-menu-item index="1" :route="{path: 'account'}">
         <i class="el-icon-setting"></i>
-        <span slot="title">账号</span>
+        <span slot="title">{{ $t('aside.account') }}</span>
       </el-menu-item>
       <el-menu-item index="2" :route="{path: 'wallet'}">
         <i class="el-icon-refresh"></i>
-        <span slot="title">转账</span>
+        <span slot="title">{{ $t('aside.wallet') }}</span>
       </el-menu-item>
-      <!-- <el-menu-item index="3" :route="{path: 'staked'}">
-        <i class="el-icon-refresh"></i>
-        <span slot="title">抵押</span>
-      </el-menu-item> -->
-      <el-menu-item index="4" :route="{path: 'votes'}">
+      <el-menu-item index="3" :route="{path: 'producers'}">
         <i class="el-icon-tickets"></i>
-        <span slot="title">投票</span>
+        <span slot="title">{{ $t('aside.producers') }}</span>
       </el-menu-item>
-      <el-menu-item index="5" :route="{path: 'setting'}">
+      <el-menu-item index="4" :route="{path: 'setting'}">
         <i class="el-icon-setting"></i>
-        <span slot="title">网络设置</span>
+        <span slot="title">{{ $t('aside.setting') }}</span>
       </el-menu-item>
     </el-menu>
 </template>
@@ -46,12 +40,12 @@ export default {
       defaultActive: '0'
     }
   },
-  mounted (params) {
+  mounted () {
     this.setActiveBar()
   },
   methods: {
     setActiveBar () {
-      let path = ['createkeys', 'account', 'wallet', 'staked', 'votes', 'setting']
+      let path = ['createkeys', 'account', 'wallet', 'producers', 'setting']
       this.defaultActive = path.indexOf(this.$router.currentRoute.name).toString()
     }
   },

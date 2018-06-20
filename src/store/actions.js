@@ -2,7 +2,8 @@ import {
   SETKEY,
   CONNECTEOSNET,
   SETACCOUNTNAMES,
-  SETEOSNETCONFIG
+  SETEOSNETCONFIG,
+  SETLANG
 } from './type'
 
 const EOS = require('eosjs')
@@ -34,5 +35,9 @@ export default {
   },
   setEOSNetConfig ({commit}, config) {
     commit(SETEOSNETCONFIG, config)
+  },
+  setLang ({commit}, lang) {
+    commit(SETLANG, lang)
+    localStorage && localStorage.setItem('lang', lang)
   }
 }

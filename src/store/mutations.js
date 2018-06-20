@@ -2,7 +2,8 @@ import {
   SETKEY,
   CONNECTEOSNET,
   SETACCOUNTNAMES,
-  SETEOSNETCONFIG
+  SETEOSNETCONFIG,
+  SETLANG
 } from './type'
 
 export default {
@@ -23,5 +24,8 @@ export default {
     state.key = null
     state.accountNames = null
     state.eosConfig = config
+  },
+  [SETLANG] (state, lang) {
+    state.lang = lang
   }
 }

@@ -1,41 +1,57 @@
 <template>
-  <el-card>
-    <h3>委托EOS</h3>
-    <el-form :model="form" :rules="rules" ref="form">
-      <el-form-item label="账户" prop="from">
-        <el-select v-model="form.from" placeholder="请选择账户">
-          <el-option
-            v-for="name in accountNames"
-            :key="name"
-            :label="name"
-            :value="name">
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="接收账户" prop="receiver">
-        <el-input
-          maxlength="12"
-          v-model="form.receiver"
-          placeholder="字符范围 1-5 a-z"></el-input>
-      </el-form-item>
-      <el-form-item label="委托net数量 -- 例: 100.00 EOS" prop="stake_net_quantity">
-        <el-input v-model="form.stake_net_quantity" placeholder="EOS网络的NET"></el-input>
-      </el-form-item>
-      <el-form-item label="委托cpu数量 -- 例: 100.00 EOS" prop="stake_cpu_quantity">
-        <el-input v-model="form.stake_cpu_quantity" placeholder="EOS网络的CPU"></el-input>
-      </el-form-item>
-      <el-form-item label="transfer">
-        <el-radio v-model="form.transfer" :label="1">true</el-radio>
-        <el-radio v-model="form.transfer" :label="0">false</el-radio>
-        <span>( 这一项设置为 true 时，委托会转给账户账号 )</span>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="handleSubmit('form')">确定委托</el-button>
-      </el-form-item>
-    </el-form>
-    <hr>
 
-  </el-card>
+  <el-row class="container">
+    <el-col :xs="24" :sm="22" :lg="14">
+      <el-card>
+        <h3>抵押EOS</h3>
+        <el-form :model="form" :rules="rules" ref="form">
+          <el-form-item label="账户" prop="from">
+            <el-select v-model="form.from" filterable placeholder="请选择账户">
+              <el-option
+                v-for="name in accountNames"
+                :key="name"
+                :label="name"
+                :value="name">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="接收账户" prop="receiver">
+            <el-input
+              maxlength="12"
+              v-model="form.receiver"
+              placeholder="字符范围 1-5 a-z"></el-input>
+          </el-form-item>
+          <el-form-item label="抵押net数量 -- 例: 10.0000 EOS" prop="stake_net_quantity">
+            <el-input v-model="form.stake_net_quantity" placeholder="EOS网络的NET"></el-input>
+          </el-form-item>
+          <el-form-item label="抵押cpu数量 -- 例: 10.0000 EOS" prop="stake_cpu_quantity">
+            <el-input v-model="form.stake_cpu_quantity" placeholder="EOS网络的CPU"></el-input>
+          </el-form-item>
+          <el-form-item label="transfer">
+            <el-radio v-model="form.transfer" :label="1">true</el-radio>
+            <el-radio v-model="form.transfer" :label="0">false</el-radio>
+            <span>( 这一项设置为 true 时，抵押会转给账户账号 )</span>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="handleSubmit('form')">确定抵押</el-button>
+          </el-form-item>
+        </el-form>
+      </el-card>
+    </el-col>
+
+     <el-col :xs="24" :sm="22" :lg="8" class="aside-spaceing">
+      <el-card style="color: #909399;">
+        <h3 style="color: #2c3e50;">提示：</h3>
+        <ol>
+          <li>账号格式 1-5 a-z</li>
+          <li>代币数量格式 数量+空格+符号</li>
+          <li>代币数量需保留四位小数</li>
+        </ol>
+      </el-card>
+    </el-col>
+
+  </el-row>
+
 </template>
 
 <script>
@@ -66,14 +82,14 @@ export default {
       rules: {
         from: {required: true, message: '请选择账户名', trigger: 'change'},
         receiver: {required: true, validator: validateAccountName, trigger: 'blur'},
-        stake_net_quantity: {required: true, message: '请输入委托数量，例:100 EOS', trigger: 'blur'},
-        stake_cpu_quantity: {required: true, message: '请输入委托数量，例:100 EOS', trigger: 'blur'},
+        stake_net_quantity: {required: true, message: '请输入抵押数量，例:10.0000 EOS', trigger: 'blur'},
+        stake_cpu_quantity: {required: true, message: '请输入抵押数量，例:10.0000 EOS', trigger: 'blur'},
         transfer: {required: true, message: '请选择', trigger: 'change'}
       },
       // eosmonitor url
-      eosmonitorTransaction: 'https://party.eosmonitor.io/txn',
-      eosmonitorAccounts: 'https://party.eosmonitor.io/accounts',
-      eosmonitorAccount: 'https://party.eosmonitor.io/account'
+      eosmonitorTransaction: 'https://eosmonitor.io/txn',
+      eosmonitorAccounts: 'https://eosmonitor.io/accounts',
+      eosmonitorAccount: 'https://eosmonitor.io/account'
     }
   },
   methods: {
@@ -106,7 +122,7 @@ export default {
           let { transaction_id } = res
           this.loading.close()
           this.$notify({
-            title: '委托成功',
+            title: '抵押成功',
             message: `
             <p>接下来可以</p>
             <a href="${this.eosmonitorTransaction}/${transaction_id}" target="_blank">前往查看浏览器操作详情<a>
@@ -121,7 +137,7 @@ export default {
           this.$message.error(errorHelper(e))
           this.loading.close()
           this.$notify({
-            title: '委托失败',
+            title: '抵押失败',
             message: `
             <p>可能的原因</p>
             <ol>
@@ -161,5 +177,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.el-card + .el-card {
+  margin-top: 20px;
+}
+.container {
+  margin-top: 20px;
+}
 
+@media (min-width: 1200px) {
+  .aside-spaceing {
+    margin-left: 20px;
+  }
+}
+@media (max-width: 1200px) {
+  .aside-spaceing {
+    margin-top: 20px;
+  }
+}
 </style>

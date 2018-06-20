@@ -4,3 +4,5 @@ export const CONNECTEOSNET = 'CONNECTEOSNET'
 export const SETEOSNETCONFIG = 'SETEOSNETCONFIG'
 // eos account name list
 export const SETACCOUNTNAMES = 'SETACCOUNTNAMES'
+// language
+export const SETLANG = 'SETLANG'

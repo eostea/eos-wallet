@@ -1,44 +1,66 @@
 <template>
-  <el-card>
-    <h2>转账</h2>
-    <el-form :model="form" :rules="rules" ref="form">
-      <el-form-item label="转账账户" prop="from">
-        <el-select v-model="form.from" placeholder="请选择账户">
-          <el-option
-            v-for="name in accountNames"
-            :key="name"
-            :label="name"
-            :value="name">
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="接收账户" prop="to">
-        <el-input v-model="form.to" placeholder=""></el-input>
-      </el-form-item>
-      <el-form-item label="转账数量 例:2 EOS" prop="quantity">
-        <el-input v-model="form.quantity" placeholder=""></el-input>
-      </el-form-item>
-      <el-form-item label="备注（可选）">
-        <el-input v-model="form.memo" placeholder="备注"></el-input>
-      </el-form-item>
-      <el-form-item label="广播（可选）">
-        <el-radio v-model="options.broadcast" :label="true">true</el-radio>
-        <el-radio v-model="options.broadcast" :label="false">false</el-radio>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="handleSubmit('form')">确定转账</el-button>
-        <el-button type="ghost" @click="resetForm('form')">重置表单</el-button>
-      </el-form-item>
-    </el-form>
-  </el-card>
+
+  <el-row class="container">
+    <el-col :xs="24" :sm="22" :lg="14">
+      <el-card>
+        <h2>转账</h2>
+        <el-form :model="form" :rules="rules" ref="form">
+          <el-form-item label="转账账户" prop="from">
+            <el-select v-model="form.from" filterable placeholder="请选择账户">
+              <el-option
+                v-for="name in accountNames"
+                :key="name"
+                :label="name"
+                :value="name">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="接收账户" prop="to">
+            <el-input v-model="form.to" maxlength="12" placeholder="请输入接收账户名"></el-input>
+          </el-form-item>
+          <el-form-item label="转账数量 例:2.0000 EOS" prop="quantity">
+            <el-input v-model="form.quantity" placeholder="请输入EOS数量"></el-input>
+          </el-form-item>
+          <el-form-item label="备注（可选）">
+            <el-input v-model="form.memo" placeholder="备注"></el-input>
+          </el-form-item>
+          <el-form-item label="广播（可选）">
+            <el-radio v-model="options.broadcast" :label="true">true</el-radio>
+            <el-radio v-model="options.broadcast" :label="false">false</el-radio>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="handleSubmit('form')">确定转账</el-button>
+            <el-button type="ghost" @click="resetForm('form')">重置表单</el-button>
+          </el-form-item>
+        </el-form>
+      </el-card>
+    </el-col>
+
+    <el-col :xs="24" :sm="22" :lg="8" class="aside-spaceing">
+      <currency-balance></currency-balance>
+      <el-card style="color: #909399;">
+        <h3 style="color: #2c3e50;">提示：</h3>
+        <ol>
+          <li>账号格式 1-5 a-z</li>
+          <li>代币数量格式 数量+空格+符号</li>
+          <li>代币数量需保留四位小数</li>
+        </ol>
+      </el-card>
+    </el-col>
+
+  </el-row>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import {errorHelper} from '@/utils/helper'
+import currencyBalance from '../currencyBalance'
 
 export default {
   name: 'wallet',
+  components: {
+    currencyBalance
+  },
   data () {
     let validateAccountName = function (rule, val, cb) {
       let re = /^[1-5a-z]+$/g
@@ -67,9 +89,9 @@ export default {
         quantity: {required: true, message: '请输入要转的EOS数量', trigger: 'blur'}
       },
       // eosmonitor url
-      eosmonitorTransaction: 'https://party.eosmonitor.io/txn',
-      eosmonitorAccounts: 'https://party.eosmonitor.io/accounts',
-      eosmonitorAccount: 'https://party.eosmonitor.io/account'
+      eosmonitorTransaction: 'https://eosmonitor.io/txn',
+      eosmonitorAccounts: 'https://eosmonitor.io/accounts',
+      eosmonitorAccount: 'https://eosmonitor.io/account'
     }
   },
   methods: {
@@ -160,9 +182,18 @@ export default {
 .el-card + .el-card {
   margin-top: 20px;
 }
+.container {
+  margin-top: 20px;
+}
+
 @media (min-width: 1200px) {
   .aside-spaceing {
     margin-left: 20px;
+  }
+}
+@media (max-width: 1200px) {
+  .aside-spaceing {
+    margin-top: 20px;
   }
 }
 </style>

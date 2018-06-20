@@ -3,15 +3,26 @@
     <el-row>
       <el-col :xs="24" :sm="22" :lg="14" :push="1">
         <el-card>
-          <el-button type="text" @click="showDialogFormVisible">创建账号</el-button>
-          <el-button type="text" @click="dialogPubKeyVisible = true">公钥查询</el-button>
-          <el-button type="text" @click="dialogAccountNameVisible = true">账户名查询</el-button>
-          <el-button type="text" @click="dialogControlledAccountsVisible = true">查询拥有的账户</el-button>
+          <el-button type="text" @click="showDialogFormVisible">
+            {{ $t('account.btn_list.createAccount') }}
+          </el-button>
+          <el-button type="text" @click="dialogPubKeyVisible = true">
+            {{ $t('account.btn_list.search_PK') }}
+          </el-button>
+          <el-button type="text" @click="dialogAccountNameVisible = true">
+            {{ $t('account.btn_list.search_AN') }}
+          </el-button>
+          <el-button type="text" @click="dialogControlledAccountsVisible = true">
+            {{ $t('account.btn_list.search_CA') }}
+          </el-button>
         </el-card>
-        <el-dialog title="创建账户" :visible.sync="dialogFormVisible">
+        <el-dialog :title="$t('createAccount.title')" :visible.sync="dialogFormVisible">
           <el-form label-width="120" :rules="rules" :model="form" ref="form" >
-            <el-form-item label="账户" prop="creator">
-              <el-select v-model="form.creator" filterable placeholder="请选择">
+            <el-form-item :label="$t('createAccount.creator')" prop="creator">
+              <el-select
+                v-model="form.creator"
+                filterable
+                :placeholder="$t('createAccount.creator_placeholder')">
                 <el-option
                   v-for="name in accountNames"
                   :key="name"
@@ -20,49 +31,85 @@
                 </el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="新账户" prop="accountName">
-              <el-input maxlength="12" v-model="form.accountName" placeholder="新账户的名字"></el-input>
+            <el-form-item :label="$t('createAccount.accountName')" prop="accountName">
+              <el-input
+                maxlength="12"
+                v-model="form.accountName"
+                :placeholder="$t('createAccount.accountName_placeholder')">
+              </el-input>
             </el-form-item>
-            <el-form-item label="owner key" prop="owner">
-              <el-input v-model="form.owner" placeholder="owner 公钥"></el-input>
+            <el-form-item :label="$t('createAccount.owner')" prop="owner">
+              <el-input v-model="form.owner" :placeholder="$t('createAccount.owner_placeholder')"></el-input>
             </el-form-item>
-            <el-form-item label="active key" prop="active">
-              <el-input v-model="form.active" placeholder="active 公钥"></el-input>
+            <el-form-item :label="$t('createAccount.active')" prop="active">
+              <el-input v-model="form.active" :placeholder="$t('createAccount.active_placeholder')"></el-input>
             </el-form-item>
-            <el-form-item label="购买存贮空间大小" prop="bytes">
-              <el-input v-model="form.bytes" placeholder="单位为 bytes"></el-input>
+            <el-form-item :label="$t('createAccount.bytes')" prop="bytes">
+              <el-input v-model="form.bytes" :placeholder="$t('createAccount.bytes_placeholder')"></el-input>
             </el-form-item>
-            <el-form-item label="委托net数量 -- 例: 100.00 EOS" prop="stake_net_quantity">
-              <el-input v-model="form.stake_net_quantity" placeholder="占用EOS网络中的NET资源"></el-input>
+            <el-form-item :label="$t('createAccount.net')" prop="stake_net_quantity">
+              <el-input v-model="form.stake_net_quantity" :placeholder="$t('createAccount.net_placeholder')"></el-input>
             </el-form-item>
-            <el-form-item label="委托cpu数量 -- 例: 100.00 EOS" prop="stake_cpu_quantity">
-              <el-input v-model="form.stake_cpu_quantity" placeholder="占用EOS网络中的CPU资源"></el-input>
+            <el-form-item :label="$t('createAccount.cpu')" prop="stake_cpu_quantity">
+              <el-input v-model="form.stake_cpu_quantity" :placeholder="$t('createAccount.cpu_placeholder')"></el-input>
             </el-form-item>
-            <el-form-item label="transfer">
+            <el-form-item :label="$t('createAccount.transfer')">
               <el-radio v-model="form.transfer" :label="1">true</el-radio>
               <el-radio v-model="form.transfer" :label="0">false</el-radio>
-              <p>(请注意！！！transfer 设置为 true 时，委托的EOS，无法撤消。设置为false，委托的EOS可以撤消 )</p>
+              <p> {{ $t('createAccount.transfer_tips') }}</p>
             </el-form-item>
             <el-form-item>
-              <el-button @click="handleCreateNewAccount('form')" type="primary">新建账号</el-button>
-              <el-button @click="resetForm('form')" type="ghost">重置表单</el-button>
+              <el-button
+                @click="handleCreateNewAccount('form')"
+                type="primary">
+                {{ $t('createAccount.createNewAccount') }}
+              </el-button>
+              <el-button
+                @click="resetForm('form')"
+                type="ghost">
+                {{ $t('createAccount.resetForm') }}
+              </el-button>
             </el-form-item>
           </el-form>
         </el-dialog>
-        <!-- 公钥查询 -->
-        <el-dialog title="通过公钥查询账户" :visible.sync="dialogPubKeyVisible">
-          <el-input type="text" v-model="dialogPubKey"></el-input>
-          <el-button type="primary" style="margin-top: 40px;" @click="getAccountsByKey">查询</el-button>
+        <!-- Search Public Key -->
+        <el-dialog :title="$t('searchAccountPubKey.title')" :visible.sync="dialogPubKeyVisible">
+          <el-input
+            type="text"
+            v-model="dialogPubKey"
+            :placeholder="$t('searchAccountPubKey.placeholder')">
+          </el-input>
+          <el-button
+            type="primary"
+            style="margin-top: 40px;"
+            @click="getAccountsByKey">
+            {{ $t('searchAccountPubKey.btn') }}
+          </el-button>
         </el-dialog>
-        <!-- 账户名查询 -->
-        <el-dialog title="通过账户名查询账户" :visible.sync="dialogAccountNameVisible">
-          <el-input type="text" maxlength="12" v-model="dialogAccountName" placeholder="请输入账户名"></el-input>
-          <el-button type="primary"  style="margin-top: 40px;" @click="getAccountByName">查询</el-button>
+        <!-- Search Account Name 账户名查询 -->
+        <el-dialog :title="$t('searchAccountName.title')" :visible.sync="dialogAccountNameVisible">
+          <el-input
+            type="text"
+            maxlength="12"
+            v-model="dialogAccountName"
+            :placeholder="$t('searchAccountName.placeholder')">
+          </el-input>
+          <el-button
+            type="primary"
+            style="margin-top: 40px;"
+            @click="getAccountByName">
+            {{ $t('searchAccountName.btn') }}
+          </el-button>
         </el-dialog>
-        <!-- 通过账户名查询拥有的账户 -->
-        <el-dialog title="通过账户名查询拥有的账户" :visible.sync="dialogControlledAccountsVisible">
-          <el-input type="text" maxlength="12" v-model="dialogControlledAccounts" placeholder="请输入账户名"></el-input>
-          <el-button type="primary"  style="margin-top: 40px;" @click="getControlledAccountsByName">查询</el-button>
+        <!-- Search controll account -->
+        <el-dialog :title="$t('searchControllAccount.btn')" :visible.sync="dialogControlledAccountsVisible">
+          <el-input type="text" maxlength="12" v-model="dialogControlledAccounts" :placeholder="$t('searchControllAccount.btn')"></el-input>
+          <el-button
+            type="primary"
+            style="margin-top: 40px;"
+            @click="getControlledAccountsByName">
+            {{ $t('searchControllAccount.btn') }}
+          </el-button>
         </el-dialog>
         <!-- table -->
         <el-table
@@ -80,7 +127,7 @@
               </el-form>
               <el-form v-if="props.row.delegated_bandwidth">
                 <el-form-item>
-                  <h3>委托带宽</h3>
+                  <h3>抵押带宽</h3>
                   <p>
                     from: {{ props.row.delegated_bandwidth.from }}
                     <i class="el-icon-caret-right"></i>
@@ -123,7 +170,7 @@
                     </p>
                     <p>parent: <strong style="color: #4285f4;">{{ item.parent }}</strong> </p>
                     <p>
-                      此公钥相关账号：
+                      此公钥相关账户：
                       <el-tag
                         v-for="(account, aIndex) in item.accounts"
                         :key="aIndex"
@@ -199,8 +246,8 @@
       <el-col :lg="6" :push="2" class="hidden-md-and-down">
         <el-card style="color: #909399;">
           <h3 style="color: #2c3e50;">提示：</h3>
-          <p><i class="el-icon-star-on"></i> 当前私钥相关的账号</p>
-          <p><i class="el-icon-star-off"></i> 当前私钥无关的账号</p>
+          <p><i class="el-icon-star-on"></i> 当前私钥相关的账户</p>
+          <p><i class="el-icon-star-off"></i> 当前私钥无关的账户</p>
         </el-card>
       </el-col>
     </el-row>
@@ -275,9 +322,9 @@ export default {
         stake_net_quantity: {required: true, trigger: 'blur'},
         stake_cpu_quantity: {required: true, trigger: 'blur'}
       },
-      eosmonitorTransaction: 'https://party.eosmonitor.io/txn',
-      eosmonitorAccounts: 'https://party.eosmonitor.io/accounts',
-      eosmonitorAccount: 'https://party.eosmonitor.io/account'
+      eosmonitorTransaction: 'https://eosmonitor.io/txn',
+      eosmonitorAccounts: 'https://eosmonitor.io/accounts',
+      eosmonitorAccount: 'https://eosmonitor.io/account'
     }
   },
   methods: {

@@ -914,14 +914,6 @@ babel-plugin-transform-vue-jsx@^3.5.0:
   dependencies:
     esutils "^2.0.2"
 
-babel-polyfill@^6.26.0:
-  version "6.26.0"
-  resolved "https://registry.yarnpkg.com/babel-polyfill/-/babel-polyfill-6.26.0.tgz#379937abc67d7895970adc621f284cd966cf2153"
-  dependencies:
-    babel-runtime "^6.26.0"
-    core-js "^2.5.0"
-    regenerator-runtime "^0.10.5"
-
 babel-preset-env@^1.3.2:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/babel-preset-env/-/babel-preset-env-1.7.0.tgz#dea79fa4ebeb883cd35dab07e260c1c9c04df77a"
@@ -2479,9 +2471,9 @@ entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
-eosjs-api@6.1.3:
-  version "6.1.3"
-  resolved "https://registry.yarnpkg.com/eosjs-api/-/eosjs-api-6.1.3.tgz#a5f7d16ab688373729660b0cb72e107898fc02b6"
+eosjs-api@6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/eosjs-api/-/eosjs-api-6.2.1.tgz#4d6f3d33cfa04aee2b4899ad0842bf3b69aa2c35"
   dependencies:
     camel-case "^3.0.0"
     isomorphic-fetch "^2.2.1"
@@ -2500,13 +2492,13 @@ eosjs-ecc@4.0.1:
     randombytes "^2.0.5"
 
 eosjs@^14.1.0:
-  version "14.1.0"
-  resolved "https://registry.yarnpkg.com/eosjs/-/eosjs-14.1.0.tgz#b33db40ce8aca2b51a01b27938ecd53e2b926bfb"
+  version "14.2.0"
+  resolved "https://registry.yarnpkg.com/eosjs/-/eosjs-14.2.0.tgz#9b966b77c9b86039df5fbea60f7df249ed42511d"
   dependencies:
-    babel-polyfill "^6.26.0"
+    babel-runtime "^6.26.0"
     binaryen "^37.0.0"
     create-hash "^1.1.3"
-    eosjs-api "6.1.3"
+    eosjs-api "6.2.1"
     eosjs-ecc "4.0.1"
     fcbuffer "2.2.0"
 
@@ -6216,10 +6208,6 @@ reduce-function-call@^1.0.1:
 regenerate@^1.2.1:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.4.0.tgz#4a856ec4b56e4077c557589cae85e7a4c8869a11"
-
-regenerator-runtime@^0.10.5:
-  version "0.10.5"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.10.5.tgz#336c3efc1220adcedda2c9fab67b5a7955a33658"
 
 regenerator-runtime@^0.11.0:
   version "0.11.1"

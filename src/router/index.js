@@ -7,7 +7,7 @@ const Wallet = () => import('@/view/wallet/index')
 const Account = () => import('@/view/account')
 const CreateKeys = () => import('@/view/createKeys')
 const ImportKey = () => import('@/view/importKey')
-const Votes = () => import('@/view/votes')
+const Producers = () => import('@/view/producers')
 
 Vue.use(Router)
 
@@ -49,9 +49,9 @@ const router = new Router({
           }
         },
         {
-          name: 'votes',
-          path: 'votes',
-          component: Votes,
+          name: 'producers',
+          path: 'producers',
+          component: Producers,
           meta: {
             requiresAuth: true,
             needConnectNet: true
@@ -62,7 +62,7 @@ const router = new Router({
           path: 'test',
           component: () => import('@/view/test'),
           meta: {
-            requiresAuth: true,
+            // requiresAuth: true,
             needConnectNet: true
           }
         },

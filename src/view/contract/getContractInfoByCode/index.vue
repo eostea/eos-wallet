@@ -31,16 +31,6 @@ import {errorHelper} from '@/utils/helper'
 export default {
   name: 'currency-balance',
   data () {
-    let validateAccountName = function (rule, val, cb) {
-      let re = /^[1-5a-z]+$/g
-      if (val === '') {
-        cb(new Error('请输入账户名'))
-      } else if (!re.test(val)) {
-        cb(new Error('名字只能包含 1-5 a-z ！'))
-      } else {
-        cb()
-      }
-    }
     return {
       loading: null,
       contractData: '',

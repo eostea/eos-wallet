@@ -1,9 +1,14 @@
 export const errorHelper = function (e) {
   try {
-    let {code, error: {details}} = JSON.parse(e)
-    let message = details && details.map(item => {
-      return item.message
-    })
+    let {error: {details, what, code}} = JSON.parse(e)
+    let message = ''
+    if (details && details.length > 0) {
+      message = details.length > 0 && details.map(item => {
+        return item.message
+      })
+    } else {
+      message = what
+    }
     let tips = `code: ${code} | ${message} `
     console.log(e)
     return tips

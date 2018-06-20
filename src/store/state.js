@@ -3,5 +3,6 @@ export default {
   isOnline: false,
   key: null, // pubKeys priKeys
   accountNames: null,
-  eosConfig: null
+  eosConfig: null,
+  lang: ''
 }

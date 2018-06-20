@@ -1,17 +1,36 @@
 <template>
   <header>
-    <div>
-      <p class="header-tips">请妥善保管好自己的私钥，本站所有内容都是静态的，不会涉及到联网，足以保证私钥的安全。（项目已开源）</p>
+    <el-row>
+      <el-col :xs="24" :sm="22" :lg="14" :push="1" class="container">
+        <p class="header-tips">{{ $t('header.tips') }}</p>
+        <el-dropdown trigger="click" @command="handleCommand">
+          <span class="el-dropdown-link" style="color: #409eff;">
+            Language<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item command="zh">中文</el-dropdown-item>
+            <el-dropdown-item command="en">English</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </el-col>
+    </el-row>
+    <div class="container">
+
     </div>
   </header>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'headerContent',
-  data () {
-    return {
-
+  methods: {
+    ...mapActions([
+      'setLang'
+    ]),
+    handleCommand (command) {
+      this.setLang(command)
+      console.log(this.$store.state.lang)
     }
   }
 }
@@ -21,6 +40,10 @@ export default {
 <style scoped>
 .header-tips {
   margin: 0;
+}
+.container {
+  display: flex;
   padding: 20px;
+  justify-content: space-between;
 }
 </style>

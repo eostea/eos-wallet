@@ -35,7 +35,10 @@ import {
   OptionGroup,
   Collapse,
   CollapseItem,
-  Transfer
+  Transfer,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem
 } from 'element-ui'
 
 Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 }
@@ -73,3 +76,6 @@ Vue.use(OptionGroup)
 Vue.use(Collapse)
 Vue.use(CollapseItem)
 Vue.use(Transfer)
+Vue.use(Dropdown)
+Vue.use(DropdownMenu)
+Vue.use(DropdownItem)

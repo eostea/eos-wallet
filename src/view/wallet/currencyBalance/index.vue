@@ -46,9 +46,9 @@ export default {
       // currency balance
       currencyBalanceNum: [],
       form: {
-        code: '',
+        code: 'eosio.token',
         account: '',
-        symbol: ''
+        symbol: 'EOS'
       },
       rules: {
         code: {required: true, message: '请输入合约账户名', trigger: 'blur'},
@@ -79,6 +79,7 @@ export default {
           eos.getCurrencyBalance(this.form)
             .then(cData => {
               this.currencyBalanceNum = cData
+              this.$message.success('查询成功')
               this.loading.close()
             })
             .catch(e => {
