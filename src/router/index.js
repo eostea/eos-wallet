@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Index from '@/view/index'
 import store from '@/store'
 import {Message} from 'element-ui'
+const features = () => import('@/view/features')
 const Wallet = () => import('@/view/wallet/index')
 const Account = () => import('@/view/account')
 const CreateKeys = () => import('@/view/createKeys')
@@ -18,6 +19,12 @@ const router = new Router({
       name: 'Index',
       component: Index,
       children: [
+        {
+          name: 'features',
+          path: 'features',
+          component: features,
+          alias: '/'
+        },
         {
           name: 'createkeys',
           path: 'createkeys',
