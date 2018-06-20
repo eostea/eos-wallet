@@ -16,13 +16,13 @@
             {{ $t('account.btn_list.search_CA') }}
           </el-button>
         </el-card>
-        <el-dialog :title="$t('createAccount.title')" :visible.sync="dialogFormVisible">
+        <el-dialog :title="$t('account.createAccount.title')" :visible.sync="dialogFormVisible">
           <el-form label-width="120" :rules="rules" :model="form" ref="form" >
-            <el-form-item :label="$t('createAccount.creator')" prop="creator">
+            <el-form-item :label="$t('account.createAccount.creator')" prop="creator">
               <el-select
                 v-model="form.creator"
                 filterable
-                :placeholder="$t('createAccount.creator_placeholder')">
+                :placeholder="$t('account.createAccount.creator_placeholder')">
                 <el-option
                   v-for="name in accountNames"
                   :key="name"
@@ -31,43 +31,43 @@
                 </el-option>
               </el-select>
             </el-form-item>
-            <el-form-item :label="$t('createAccount.accountName')" prop="accountName">
+            <el-form-item :label="$t('account.createAccount.accountName')" prop="accountName">
               <el-input
                 maxlength="12"
                 v-model="form.accountName"
-                :placeholder="$t('createAccount.accountName_placeholder')">
+                :placeholder="$t('account.createAccount.accountName_placeholder')">
               </el-input>
             </el-form-item>
-            <el-form-item :label="$t('createAccount.owner')" prop="owner">
-              <el-input v-model="form.owner" :placeholder="$t('createAccount.owner_placeholder')"></el-input>
+            <el-form-item :label="$t('account.createAccount.owner')" prop="owner">
+              <el-input v-model="form.owner" :placeholder="$t('account.createAccount.owner_placeholder')"></el-input>
             </el-form-item>
-            <el-form-item :label="$t('createAccount.active')" prop="active">
-              <el-input v-model="form.active" :placeholder="$t('createAccount.active_placeholder')"></el-input>
+            <el-form-item :label="$t('account.createAccount.active')" prop="active">
+              <el-input v-model="form.active" :placeholder="$t('account.createAccount.active_placeholder')"></el-input>
             </el-form-item>
-            <el-form-item :label="$t('createAccount.bytes')" prop="bytes">
-              <el-input v-model="form.bytes" :placeholder="$t('createAccount.bytes_placeholder')"></el-input>
+            <el-form-item :label="$t('account.createAccount.bytes')" prop="bytes">
+              <el-input v-model="form.bytes" :placeholder="$t('account.createAccount.bytes_placeholder')"></el-input>
             </el-form-item>
-            <el-form-item :label="$t('createAccount.net')" prop="stake_net_quantity">
-              <el-input v-model="form.stake_net_quantity" :placeholder="$t('createAccount.net_placeholder')"></el-input>
+            <el-form-item :label="$t('account.createAccount.net')" prop="stake_net_quantity">
+              <el-input v-model="form.stake_net_quantity" :placeholder="$t('account.createAccount.net_placeholder')"></el-input>
             </el-form-item>
-            <el-form-item :label="$t('createAccount.cpu')" prop="stake_cpu_quantity">
-              <el-input v-model="form.stake_cpu_quantity" :placeholder="$t('createAccount.cpu_placeholder')"></el-input>
+            <el-form-item :label="$t('account.createAccount.cpu')" prop="stake_cpu_quantity">
+              <el-input v-model="form.stake_cpu_quantity" :placeholder="$t('account.createAccount.cpu_placeholder')"></el-input>
             </el-form-item>
-            <el-form-item :label="$t('createAccount.transfer')">
+            <el-form-item :label="$t('account.createAccount.transfer')">
               <el-radio v-model="form.transfer" :label="1">true</el-radio>
               <el-radio v-model="form.transfer" :label="0">false</el-radio>
-              <p> {{ $t('createAccount.transfer_tips') }}</p>
+              <p> {{ $t('account.createAccount.transfer_tips') }}</p>
             </el-form-item>
             <el-form-item>
               <el-button
                 @click="handleCreateNewAccount('form')"
                 type="primary">
-                {{ $t('createAccount.createNewAccount') }}
+                {{ $t('account.createAccount.createNewAccount') }}
               </el-button>
               <el-button
                 @click="resetForm('form')"
                 type="ghost">
-                {{ $t('createAccount.resetForm') }}
+                {{ $t('account.createAccount.resetForm') }}
               </el-button>
             </el-form-item>
           </el-form>
