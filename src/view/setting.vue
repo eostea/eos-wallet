@@ -14,7 +14,7 @@
                 </el-col>
               </el-row>
             </el-form-item>
-            <el-form-item :label="$t('setting.form.expireInSeconds')">
+            <el-form-item :label="$t('setting.form.expireInSeconds_label')">
               <el-input v-model="form.expireInSeconds" :placeholder="$t('setting.form.expireInSeconds_placeholder')"></el-input>
             </el-form-item>
             <el-form-item :label="$t('setting.form.broadcast')">
@@ -32,6 +32,7 @@
         </el-card>
       </el-col>
       <el-col :xs="24" :sm="22" :lg="6" :push="1" class="aside-spaceing">
+
         <el-card style="color: #909399;">
           <h3 style="color: #2c3e50;">{{ $t('setting.tips.h3') }}</h3>
           <ol>
