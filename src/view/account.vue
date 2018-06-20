@@ -102,8 +102,8 @@
           </el-button>
         </el-dialog>
         <!-- Search controll account -->
-        <el-dialog :title="$t('searchControllAccount.btn')" :visible.sync="dialogControlledAccountsVisible">
-          <el-input type="text" maxlength="12" v-model="dialogControlledAccounts" :placeholder="$t('searchControllAccount.btn')"></el-input>
+        <el-dialog :title="$t('searchControllAccount.title')" :visible.sync="dialogControlledAccountsVisible">
+          <el-input type="text" maxlength="12" v-model="dialogControlledAccounts" :placeholder="$t('searchControllAccount.placeholder')"></el-input>
           <el-button
             type="primary"
             style="margin-top: 40px;"
@@ -120,9 +120,17 @@
               <el-form label-position="left" size="mini">
                 <el-form-item>
                   <h3>总资源</h3>
-                  <p>NET 权重：{{ props.row.total_resources.net_weight }}</p>
-                  <p>CPU 权重：{{ props.row.total_resources.cpu_weight }}</p>
-                  <p>可用RAM：{{ props.row.total_resources.ram_bytes }} (bytes)</p>
+                  <p>NET 权重：{{ props.row.total_resources.net_weight }} / 自身抵押：{{ props.row.self_delegated_bandwidth.net_weight }}</p>
+                  <p>CPU 权重：{{ props.row.total_resources.cpu_weight }} / 自身抵押：{{ props.row.self_delegated_bandwidth.cpu_weight }}</p>
+                  <p>可用RAM：{{ props.row.total_resources.ram_bytes }} bytes / 已用：{{ props.row.ram_usage }} bytes</p>
+                  <p v-if="props.row.refund_request">
+                    退还EOS资源请求：
+                    CPU <span>{{ props.row.refund_request.cpu_amount }}</span> /
+                    NET <span>{{ props.row.refund_request.net_amount }}</span>
+                    <i class="el-icon-arrow-right" style="color: green;font-weight: 800;"></i>
+                    <span>{{ props.row.refund_request.owner }}</span>
+                    (<span>{{ props.row.refund_request.request_time }}</span>)
+                  </p>
                 </el-form-item>
               </el-form>
               <el-form v-if="props.row.delegated_bandwidth">
@@ -219,10 +227,6 @@
             width="180">
           </el-table-column>
           <el-table-column
-            prop="ram_quota"
-            label="RAM份额">
-          </el-table-column>
-          <el-table-column
             prop="net_weight"
             label="网络权重">
           </el-table-column>
@@ -231,8 +235,12 @@
             label="CPU权重">
           </el-table-column>
           <el-table-column
+            prop="ram_quota"
+            label="RAM份额">
+          </el-table-column>
+          <el-table-column
             prop="ram_usage"
-            label="RAM使用率">
+            label="已用RAM">
           </el-table-column>
           <el-table-column
             label="标识">
@@ -542,8 +550,7 @@ export default {
       let accountArr = Object.assign([], this.accountTable)
       accountArr = accountArr.map(item => {
         let time = new Date(item.created)
-        let timeZoneOffset = time.getTimezoneOffset() * 60 * 1000
-        item.created = this.$dayjs(time - timeZoneOffset).format('YYYY-MM-DD HH:mm:ss')
+        item.created = this.$dayjs(time).format('YYYY-MM-DD HH:mm:ss')
         return item
       })
       return accountArr

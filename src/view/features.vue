@@ -15,6 +15,7 @@
         <li>转账</li>
         <li>抵押EOS</li>
         <li>取消抵押EOS</li>
+        <li>退款</li>
         <li>购买ram</li>
         <li>出售ram</li>
         <li>竞价账户名</li>

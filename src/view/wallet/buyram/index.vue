@@ -65,7 +65,7 @@
           <li>账号格式 1-5 a-z</li>
           <li>代币数量格式 数量+空格+符号</li>
           <li>按EOS来购买时需保留四位小数 例：0.0001 EOS</li>
-          <li>按bytes来购买时 单位位 bytes</li>
+          <li>按bytes来购买时 单位为 bytes</li>
         </ol>
       </el-card>
     </el-col>
